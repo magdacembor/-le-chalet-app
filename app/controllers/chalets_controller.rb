@@ -2,9 +2,7 @@ class ChaletsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
   before_action :find_chalet, only: [ :show, :edit, :update, :destroy ]
 
-  def home
-    @chalet = Chalet.new
-  end
+  def home; end
 
   def index
     @chalets = Chalet.all
@@ -18,6 +16,7 @@ class ChaletsController < ApplicationController
 
   def create
     @chalet = Chalet.new(chalet_params)
+    @chalet.user = current_user
     if @chalet.save
       redirect_to chalet_path(@chalet)
     else
