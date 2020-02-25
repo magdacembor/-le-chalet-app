@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
   before_action :find_chalet, only: [:new, :create]
-  before_action :find_user, only: [:new, :create]
 
   def new
     @review = Review.new
@@ -9,11 +8,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.chalet = @chalet
-    @review.user = @user
+    @review.user = current_user
     if @review.save
       redirect_to chalet_path(@chalet)
     else
-      render :new
+      render "chalets/show"
     end
   end
 
@@ -28,10 +27,6 @@ class ReviewsController < ApplicationController
 
   def find_chalet
     @chalet = Chalet.find(params[:chalet_id])
-  end
-
-  def find_user
-    @user = User.find(params[:user_id])
   end
 
   def review_params
