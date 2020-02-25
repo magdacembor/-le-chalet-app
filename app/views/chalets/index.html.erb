@@ -4,7 +4,7 @@
     <% @chalets.each do |chalet| %>
       <%= link_to chalet_path(chalet) do %>
         <div class="chalet-card">
-          <div class="chalet-card-image">
+          <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('<%= cl_image_path chalet.photos.first.key, crop: :fill %>')"> <!-- scale, fit, fill, limit, pad, crop -->
             <div class="beds-and-guests">
               <span><%= chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></span>
               <span><%= chalet.number_of_guests %> <i class="fas fa-user-friends"></i></span>
