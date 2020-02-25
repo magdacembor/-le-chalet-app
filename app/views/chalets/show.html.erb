@@ -1,3 +1,29 @@
-<div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @chalet.photos.first.key, height: 400, width: 400, crop: :fill %>')">
-  <%= @chalet.name %>
+
+<div class="row">
+  <div class="col-11 offset-1">
+    <div class="row">
+      <div class="col-11" style="height: 300px;">
+        <% @chalet.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 250, width: 250, crop: :fill %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= @chalet.description%><br>
+        <%= @chalet.address %><br>
+        <%= @chalet.number_of_guests %> people<br>
+        <%= @chalet.number_of_bedrooms %> bedroom<br>
+        £<%= @chalet.price %> per night
+      </div>
+      <div class="col-5">
+        <%= simple_form_for [@chalet, @booking] do |f| %>
+          <%= f.input :check_in_date %>
+          <%= f.input :check_out_date %>
+          <%= f.input :number_of_guests %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

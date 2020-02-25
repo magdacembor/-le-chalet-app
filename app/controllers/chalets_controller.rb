@@ -8,7 +8,10 @@ class ChaletsController < ApplicationController
     @chalets = Chalet.all
   end
 
-  def show; end
+  def show
+    @booking = Booking.new
+    @booking.user_id = current_user
+  end
 
   def new
     @chalet = Chalet.new

@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     chalet = Chalet.find(params[:chalet_id])
     @booking.user = current_user
-    @booking.chalet = chalet
+    @booking.chalet_id = chalet.id
     if @booking.save
       redirect_to chalet_path(chalet)
     else
@@ -27,6 +27,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permits(:check_in_date, :check_out_date)
+    params.require(:booking).permit(:check_in_date, :check_out_date, :number_of_guests)
   end
 end
