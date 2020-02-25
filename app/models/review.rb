@@ -4,5 +4,5 @@ class Review < ApplicationRecord
 
   validates :content, :rating, :user, :chalet, presence: true
   validates :rating, inclusion: { in: (1..5) }
-  validates :chalet, uniqueness: { scope: :user, message: "Only one review per user about this chalet" }
+  validates :chalet, uniqueness: { scope: :user, message: "Sorry, you can only review this chalet once." }
 end
