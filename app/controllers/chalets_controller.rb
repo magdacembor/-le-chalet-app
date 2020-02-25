@@ -2,7 +2,9 @@ class ChaletsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
   before_action :find_chalet, only: [ :show, :edit, :update, :destroy ]
 
-  def home; end
+  def home
+    @chalet = Chalet.new
+  end
 
   def index
     @chalets = Chalet.all
