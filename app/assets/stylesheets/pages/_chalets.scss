@@ -3,6 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  a {
+    color: black;
+    transition: transform .5s;
+  }
+  a:hover {
+    text-decoration: none;
+    transform: scale(1.01);
+  }
 }
 
 .chalet-card {
@@ -35,12 +43,4 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  p {
-    text-decoration: none;
-    color: black;
-    &:hover {
-      text-decoration: none;
-      color: black;
-    }
-  }
 }
