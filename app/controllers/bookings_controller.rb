@@ -1,15 +1,14 @@
 class BookingsController < ApplicationController
   def new
     @booking = Booking.new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @chalet = Chalet.find(params[:chalet_id])
   end
 
   def create
     @booking = Booking.new(booking_params)
-    user = User.find(params[:user_id])
     chalet = Chalet.find(params[:chalet_id])
-    @booking.user = user
+    @booking.user = current_user
     @booking.chalet = chalet
     if @booking.save
       redirect_to chalet_path(chalet)
