@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   a {
-    color: black;
+    color: rgb(20,20,20);
     transition: transform .5s;
   }
   a:hover {
@@ -20,7 +20,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid rgb(20,20,20);
   background-color: white;
 }
 
