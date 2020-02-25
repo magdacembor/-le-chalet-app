@@ -47,6 +47,6 @@ class ChaletsController < ApplicationController
   end
 
   def chalet_params
-    params.require(:chalet).permit(:name, :description, :country, :address, :number_of_guests, :number_of_bedrooms, :price)
+    params.require(:chalet).permit(:name, :description, :country, :address, :number_of_guests, :number_of_bedrooms, :price, photos: [])
   end
 end
