@@ -2,10 +2,12 @@ class ReviewsController < ApplicationController
   before_action :find_chalet, only: [:new, :create]
 
   def new
+    @user = current_user
     @review = Review.new
   end
 
   def create
+    @user = current_user
     @review = Review.new(review_params)
     @review.chalet = @chalet
     @review.user = current_user
