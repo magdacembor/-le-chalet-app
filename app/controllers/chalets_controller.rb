@@ -6,6 +6,7 @@ class ChaletsController < ApplicationController
 
   def index
     @chalets = Chalet.all
+    @address = params[:index][:address]
   end
 
   def show

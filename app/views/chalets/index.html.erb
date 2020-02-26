@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Chalets in Verbier, France</h1>
+  <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
   <div class="chalet-cards">
     <% @chalets.each do |chalet| %>
       <%= link_to chalet_path(chalet) do %>
