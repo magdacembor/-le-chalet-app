@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+.login-button {
+  a {
+    color: black;
+  }
+  a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+}
