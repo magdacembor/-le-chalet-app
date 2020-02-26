@@ -11,9 +11,9 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.chalet_id = chalet.id
     if @booking.save
-      redirect_to chalet_path(chalet)
+      redirect_to dashboard_path
     else
-      render :new
+      redirect_to chalet_path(chalet)
     end
   end
 
