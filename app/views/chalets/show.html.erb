@@ -35,6 +35,7 @@
         <% @chalet.reviews.each do |review| %>
           <h4><%= review.rating %></h4 >
           <p><%= review.content %></p>
+          <p><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %>
           <br>
         <% end %>
       </div>
