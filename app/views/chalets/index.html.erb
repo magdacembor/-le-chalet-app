@@ -2,3 +2,5 @@
 <% @chalets.each do |chalet| %>
   <p><%= chalet.name %></p>
 <% end %>
+
+<%= cl_image_tag @user.avatar.key %>
