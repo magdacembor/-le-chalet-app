@@ -22,3 +22,6 @@ require("channels")
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
 import "bootstrap";
+import { initAutocomplete } from '../plugins/init_autocomplete.js';
+
+initAutocomplete();
