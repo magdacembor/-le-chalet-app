@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to chalet_path(@chalet)
     else
-      render "chalets/show"
+      redirect_to chalet_path(@chalet)
     end
   end
 

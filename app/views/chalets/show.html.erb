@@ -68,6 +68,29 @@
         <% end %>
       </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <!-- Where reviews will be posted -->
+        <h3>Reviews</h3>
+        <% @chalet.reviews.each do |review| %>
+          <h4><%= review.rating %></h4 >
+          <p><%= review.content %></p>
+          <p><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %>
+          <br>
+        <% end %>
+      </div>
+      <div class="col-5">
+        <!-- Where reviews form goes -->
+        <%= simple_form_for [@chalet, @review] do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :content %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

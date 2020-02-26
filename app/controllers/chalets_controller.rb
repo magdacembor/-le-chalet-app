@@ -6,11 +6,14 @@ class ChaletsController < ApplicationController
 
   def index
     @chalets = Chalet.all
+    @address = params[:index][:address]
   end
 
   def show
     @booking = Booking.new
     @booking.user_id = current_user
+    @review = Review.new
+    @review.user_id = current_user
   end
 
   def new
