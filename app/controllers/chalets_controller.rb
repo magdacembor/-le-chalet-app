@@ -12,6 +12,8 @@ class ChaletsController < ApplicationController
   def show
     @booking = Booking.new
     @booking.user_id = current_user
+    @review = Review.new
+    @review.user_id = current_user
   end
 
   def new
