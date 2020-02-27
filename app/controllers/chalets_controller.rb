@@ -5,13 +5,19 @@ class ChaletsController < ApplicationController
   def home; end
 
   def index
-    @chalets = Chalet.all
+    @chalets = Chalet.geocoded
     if defined?(params[:index][:address]) && !params[:index][:address].empty?
       @address = params[:index][:address]
       @chalets = Chalet.where("address @@ :query OR country @@ :query", query: "%#{@address}%")
       if defined?(params[:index][:number_of_guests]) && params[:index][:number_of_guests].to_i > 0
         @chalets = @chalets.where("number_of_guests >= :query", query: params[:index][:number_of_guests].to_i)
       end
+    end
+    @markers = @chalets.map do |chalet|
+      {
+        lat: chalet.latitude,
+        lng: chalet.longitude
+      }
     end
   end
 

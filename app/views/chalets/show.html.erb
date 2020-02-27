@@ -47,21 +47,5 @@
   </div>
   <div style="width: 100%;" class="my-5">
     <div id='map' style='width: 100%; height: 400px;'></div>
-    <% token = "pk.eyJ1IjoicGlvdHItZGUiLCJhIjoiY2s2YzdpcngxMDgydzNscXh6NGUwMXpwdCJ9.zU1s4Q3hB2Jz-3mqbRcAng" %>
-    <% url = "https://api.mapbox.com/geocoding/v5/mapbox.places/#{@chalet.address.gsub("\s", "%20")}.json?access_token=#{token}" %>
-    <% coords = JSON.parse(RestClient.get(url))["features"][0]["center"] %>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoicGlvdHItZGUiLCJhIjoiY2s2YzdpcngxMDgydzNscXh6NGUwMXpwdCJ9.zU1s4Q3hB2Jz-3mqbRcAng';
-      const map = new mapboxgl.Map({
-      center: <%= coords %>,
-      zoom: 12,
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11'
-      });
-      const marker = new mapboxgl.Marker()
-        .setLngLat(<%= coords %>)
-        .addTo(map);
-    </script>
   </div>
 </div>
