@@ -1,5 +1,5 @@
 <div class="container">
-  <% if @address.empty? %>
+  <% if @address.nil? %>
     <h1>All chalets</h1>
   <% elsif @address.split(',').length == 1 %>
     <h1>Chalets in <%= @address %></h1>
