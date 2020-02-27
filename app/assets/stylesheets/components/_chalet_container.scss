@@ -1,5 +1,4 @@
 .chalet-container{
   display: grid;
-  justify-content: center;
-
+  grid-template-columns: 1fr 1fr;
 }
