@@ -26,6 +26,9 @@ class ChaletsController < ApplicationController
     @booking.user_id = current_user
     @review = Review.new
     @review.user_id = current_user
+    @markers = [
+      { lng: @chalet.longitude, lat: @chalet.latitude }
+    ]
   end
 
   def new
