@@ -1,33 +1,12 @@
-<div class="your-class">
-
-  <% @chalet.photos.each do |photo| %>
-    <div><%= cl_image_tag photo.key, crop: :fill, class: "testt" %></div>
-  <% end %>
-</div>
-
-<!-- <div id="carousel-1" class="carousel slide multi-item-carousel" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-1" data-slide-to="1"></li>
-    <li data-target="#carousel-1" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <div class="item__third">
-        <img src="//placehold.it/900x300/c69/f9c/?text=1" alt="">
-      </div>
-    </div>
-    <div class="item">
-      <div class="item__third">
-        <img src="//placehold.it/900x300/9c6/cf9/?text=2" alt="">
-      </div>
-    </div>
-    <div class="item">
-      <div class="item__third">
-        <img src="//placehold.it/900x300/69c/9cf/?text=3" alt="">
-      </div>
-    </div>
+<div class='carousel'>
+  <div class="carousel-styling">
+    <% @chalet.photos.each do |photo| %>
+      <div><%= cl_image_tag photo.key, crop: :fill, class: "testt" %></div>
+    <% end %>
   </div>
-  <a href="#carousel-1" class="left carousel-control" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-  <a href="#carousel-1" class="right carousel-control" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-</div> -->
+  <div class="carousel-tag">
+    <p>£<%= @chalet.price %> per night</p>
+    <p><%= @chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></p>
+    <p><%= @chalet.number_of_guests %> <i class="fas fa-user-friends"></i></p>
+  </div>
+</div>

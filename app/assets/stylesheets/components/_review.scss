@@ -1,0 +1,16 @@
+.review {
+  margin-bottom: 100px;
+  .user-review-delete {
+    display: flex;
+    justify-content: space-between;
+  }
+  .user-review {
+    color: rgb(150,150,150);
+  }
+  a {
+    color: rgb(150,150,150);
+  }
+  a:hover {
+    color: red;
+  }
+}
