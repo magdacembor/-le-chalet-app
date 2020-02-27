@@ -29,7 +29,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
 const carousel = () => {
-  $('.your-class').slick({
+  $('.carousel-styling').slick({
     centerMode: true,
       centerPadding: '300px',
       slidesToShow: 1,
