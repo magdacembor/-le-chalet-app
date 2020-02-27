@@ -19,7 +19,9 @@
       <% end %>
     </div>
     <div class="col-5">
-      <!-- Where reviews form goes! -->
+
+      <!-- Where reviews form goes -->
+      
       <%= simple_form_for [@chalet, @review] do |f| %>
         <%= f.input :rating %>
         <%= f.input :content %>
