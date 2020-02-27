@@ -23,14 +23,13 @@ require("channels")
 // ----------------------------------------------------
 import "bootstrap";
 import { initAutocomplete } from '../plugins/init_autocomplete.js';
+import { initMapbox } from '../plugins/init_mapbox';
 import slick from 'slick-carousel'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-initAutocomplete();
-
-$(document).ready(function(){
-  $('.carousel-styling').slick({
+const carousel = () => {
+  $('.your-class').slick({
     centerMode: true,
       centerPadding: '300px',
       slidesToShow: 1,
@@ -39,4 +38,11 @@ $(document).ready(function(){
       dots: true,
       speed: 300
   });
+}
+
+document.addEventListener("turbolinks:load", () => {
+  carousel();
+  initAutocomplete();
+  initMapbox();
 });
+
