@@ -28,13 +28,9 @@ import slick from 'slick-carousel'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-initAutocomplete();
-
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener("turbolinks:load", () => {
+  initAutocomplete();
   initMapbox();
-})
-
-$(document).ready(function(){
   $('.your-class').slick({
     centerMode: true,
       centerPadding: '300px',
