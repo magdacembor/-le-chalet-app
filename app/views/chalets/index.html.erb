@@ -1,5 +1,11 @@
 <div class="container">
-  <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
+  <% if @address.empty? %>
+    <h1>All chalets</h1>
+  <% elsif @address.split(',').length == 1 %>
+    <h1>Chalets in <%= @address %></h1>
+  <% else %>
+    <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
+  <% end %>
   <div class="chalet-cards">
     <% @chalets.each do |chalet| %>
       <% next unless chalet.photos.any? %>
