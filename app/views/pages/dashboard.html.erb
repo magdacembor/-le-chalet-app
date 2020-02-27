@@ -1,6 +1,112 @@
-<h1>Chalet dashboard</h1>
-<h3>My bookings</h3>
-<%= cl_image_tag("zwqyw4k30sh78ykq0cycbl60w2em",
-      width: 400, height: 300, crop: :fill) %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 dashboard-header">
+      <h3>Hi <%= @user.first_name %>, welcome to your Dashboard!</h3>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-12">
+      <p></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3>Your bookings</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= "You have no bookings at Le Chalet yet" if @bookings.empty? %>
+      <% @bookings.each do |booking| %>
+          <div class="row">
+            <div class="col-4">
+              <div class="chalet-card">
+                <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('<%= cl_image_path booking.chalet.photos.first.key, crop: :fill %>'); background-size: cover;"> <!-- scale, fit, fill, limit, pad, crop -->
+                  <div class="beds-and-guests">
+                    <span><%= booking.chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></span>
+                    <span><%= booking.chalet.number_of_guests %> <i class="fas fa-user-friends"></i></span>
+                  </div>
+                </div>
+                <div class="chalet-card-description">
+                  <div class="chalet-name">
+                    <p><%= booking.chalet.name %></p>
+                    <p><%= booking.chalet.address %></p>
+                  </div>
+                  <div class="chalet-price">
+                    <p>£<%= booking.chalet.price %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+                <div class="booking-info">
+                  <h3>Your booking at <%= booking.chalet.name %></h3>
+                  <p class="booking-card-header">Dates</p>
+                  <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
+                  <p class="booking-card-header">Status</p>
+                  <p><%= booking.status %></p>
+                  <p class="booking-card-header">Message to owner</p>
+                  <p>Important message</p>
+                  <br>
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-info">Message owner</button>
+                    <p><strong> Status: </strong><%= booking.status %> </p>
+                  </div>
+                </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <h3>Your properties</h3>
 
-<h3>My properties</h3>
+  <div class="row">
+    <div class="col-12">
+      <%= "You have no properties listed at Le Chalet currently" if @chalets.empty? %>
+      <% @chalets.each do |chalet| %>
+          <div class="row">
+            <div class="col-4">
+              <div class="chalet-card">
+                <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('<%= cl_image_path chalet.photos.first.key, crop: :fill %>')"> <!-- scale, fit, fill, limit, pad, crop -->
+                  <div class="beds-and-guests">
+                    <span><%= chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></span>
+                    <span><%= chalet.number_of_guests %> <i class="fas fa-user-friends"></i></span>
+                  </div>
+                </div>
+                <div class="chalet-card-description">
+                  <div class="chalet-name">
+                    <p><%= chalet.name %></p>
+                    <p><%= chalet.address %></p>
+                  </div>
+                  <div class="chalet-price">
+                    <p>£<%= chalet.price %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+                <% chalet.bookings.each do |booking| %>
+                  <div class="booking-info">
+                    <h3>Booking request made for <%= chalet.name %></h3>
+                    <p class="booking-card-header">Dates</p>
+                    <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
+                    <p class="booking-card-header">Status</p>
+                    <p><%= booking.status %></p>
+                    <p class="booking-card-header">Message to owner</p>
+                    <p>Important message</p>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                      <button type="button" class="btn btn-danger">Reject</button>
+                      <button type="button" class="btn btn-primary">Accept</button>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

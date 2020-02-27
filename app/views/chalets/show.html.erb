@@ -1,3 +1,93 @@
-<div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @chalet.photos.first.key, height: 400, width: 400, crop: :fill %>')">
-  <%= @chalet.name %>
+<div class="my-5">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <% @chalet.photos.drop(1).each_with_index do |photo, i| %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>"></li>
+          <% end %>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= cl_image_tag @chalet.photos.first.key, crop: :fill, class: 'carousel-img' %>
+          </div>
+          <% @chalet.photos.drop(1).each do |photo| %>
+            <div class="carousel-item">
+              <%= cl_image_tag photo.key, crop: :fill, class: 'carousel-img' %>
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="d-flex align-items-start justify-content-between">
+    <div class="w-100">
+      <%= @chalet.description%><br>
+      <%= @chalet.address %><br>
+      <%= @chalet.number_of_guests %> people<br>
+      <%= @chalet.number_of_bedrooms %> bedroom<br>
+      £<%= @chalet.price %> per night
+    </div>
+    <div class="w-100">
+      <%= simple_form_for [@chalet, @booking], html: { class: 'w-100' } do |f| %>
+        <%= f.input :check_in_date, html5: true %>
+        <%= f.input :check_out_date, html5: true %>
+        <%= f.input :number_of_guests %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-6">
+      <!-- Where reviews will be posted -->
+      <h3>Reviews</h3>
+      <% @chalet.reviews.each do |review| %>
+        <h4><%= review.rating %></h4 >
+        <p><%= review.content %></p>
+        <p><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %>
+        <br>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <!-- Where reviews form goes -->
+      <%= simple_form_for [@chalet, @review] do |f| %>
+        <%= f.input :rating %>
+        <%= f.input :content %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+  <div style="width: 100%;" class="my-5">
+    <div id='map' style='width: 100%; height: 400px;'></div>
+    <% token = "pk.eyJ1IjoicGlvdHItZGUiLCJhIjoiY2s2YzdpcngxMDgydzNscXh6NGUwMXpwdCJ9.zU1s4Q3hB2Jz-3mqbRcAng" %>
+    <% url = "https://api.mapbox.com/geocoding/v5/mapbox.places/#{@chalet.address.gsub("\s", "%20")}.json?access_token=#{token}" %>
+    <% coords = JSON.parse(RestClient.get(url))["features"][0]["center"] %>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoicGlvdHItZGUiLCJhIjoiY2s2YzdpcngxMDgydzNscXh6NGUwMXpwdCJ9.zU1s4Q3hB2Jz-3mqbRcAng';
+      const map = new mapboxgl.Map({
+      center: <%= coords %>,
+      zoom: 12,
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11'
+      });
+      const marker = new mapboxgl.Marker()
+        .setLngLat(<%= coords %>)
+        .addTo(map);
+    </script>
+  </div>
 </div>
