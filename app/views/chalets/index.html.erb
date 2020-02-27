@@ -1,13 +1,34 @@
 <div class="container">
-
   <div class="row">
     <div class="col-12">
-      <% if @address.empty? %>
-        <h1>All chalets</h1>
-      <% elsif @address.split(',').length == 1 %>
-        <h1>Chalets in <%= @address %></h1>
-      <% else %>
-        <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
+  <% if !@address || @address.empty? %>
+    <h1>All chalets</h1>
+  <% elsif @address.split(',').length == 1 %>
+    <h1>Chalets in <%= @address %></h1>
+  <% else %>
+    <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
+  <% end %>
+  <div class="chalet-cards">
+    <% @chalets.each do |chalet| %>
+      <% next unless chalet.photos.any? %>
+      <%= link_to chalet_path(chalet) do %>
+        <div class="chalet-card">
+          <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('<%= cl_image_path chalet.photos.first&.key || 'kmqfrjpvvv23epnxvfyhzogl9d71', crop: :fill %>')"> <!-- scale, fit, fill, limit, pad, crop -->
+            <div class="beds-and-guests">
+              <span><%= chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></span>
+              <span><%= chalet.number_of_guests %> <i class="fas fa-user-friends"></i></span>
+            </div>
+          </div>
+          <div class="chalet-card-description">
+            <div class="chalet-name">
+              <p><%= chalet.name %></p>
+              <p><%= chalet.address %></p>
+            </div>
+            <div class="chalet-price">
+              <p>£<%= chalet.price %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
