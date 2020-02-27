@@ -27,7 +27,7 @@ import slick from 'slick-carousel'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-initAutocomplete();
+window.initAutocomplete = initAutocomplete
 
 $(document).ready(function(){
   $('.your-class').slick({
