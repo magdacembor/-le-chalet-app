@@ -6,7 +6,9 @@ class ChaletsController < ApplicationController
 
   def index
     @chalets = Chalet.all
-    @address = params[:index][:address]
+    if defined?(params[:index][:address])
+      @address = params[:index][:address]
+    end
   end
 
   def show
