@@ -30,7 +30,7 @@ import 'slick-carousel/slick/slick.css'
 initAutocomplete();
 
 $(document).ready(function(){
-  $('.your-class').slick({
+  $('.carousel-styling').slick({
     centerMode: true,
       centerPadding: '300px',
       slidesToShow: 1,

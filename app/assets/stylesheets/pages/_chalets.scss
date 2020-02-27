@@ -1,5 +1,17 @@
 .chalet-title {
+  margin-top: 40px;
   text-align: center;
   padding: 20px 0;
   color: rgb(60,60,60);
+  .beds-and-guests{
+    font-size: 18px;
+  }
+}
+
+.chalet-description {
+  margin-top: 80px;
+  color: rgb(60,60,60);
+  h2 {
+    margin-bottom: 20px;
+  }
 }
