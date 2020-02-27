@@ -26,6 +26,13 @@ class ChaletsController < ApplicationController
     @booking.user_id = current_user
     @review = Review.new
     @review.user_id = current_user
+    @chalets = Chalet.geocoded
+    @markers = @chalets.map do |chalet|
+      {
+        lat: chalet.latitude,
+        lng: chalet.longitude
+      }
+    end
   end
 
   def new
