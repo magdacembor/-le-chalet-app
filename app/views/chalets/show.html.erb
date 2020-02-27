@@ -4,16 +4,13 @@
 
 <%= render "chalets/carousel" %>
 
-<div class="container">
+<div class="container chalet-description">
   <div class="d-flex align-items-start justify-content-between">
-    <div class="w-100">
-      <%= @chalet.description%><br>
-      <%= @chalet.address %><br>
-      <%= @chalet.number_of_guests %> people<br>
-      <%= @chalet.number_of_bedrooms %> bedroom<br>
-      £<%= @chalet.price %> per night
+    <div class="col-6">
+      <h2><%= @chalet.address %></h2>
+      <p><%= @chalet.description%></p>
     </div>
-    <div class="w-100">
+    <div class="col-5">
       <%= simple_form_for [@chalet, @booking], html: { class: 'w-100' } do |f| %>
         <%= f.input :check_in_date, html5: true %>
         <%= f.input :check_out_date, html5: true %>
@@ -22,30 +19,15 @@
       <% end %>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <div class="row">
-    <div class="col-6">
-      <!-- Where reviews will be posted -->
-      <h3>Reviews</h3>
-      <% @chalet.reviews.each do |review| %>
-        <h4><%= review.rating %></h4 >
-        <p><%= review.content %></p>
-        <p><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %>
-        <br>
-      <% end %>
-    </div>
-    <div class="col-6">
-      <!-- Where reviews form goes -->
-      <%= simple_form_for [@chalet, @review] do |f| %>
-        <%= f.input :rating %>
-        <%= f.input :content %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-  </div>
-  <div style="width: 100%;" class="my-5">
-    <div id='map' style='width: 100%; height: 400px;'></div>
-  </div>
 </div>
+
+<!-- Map -->
+<div id="map"
+     style="width: 100%;
+     height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+<!-- Reviews -->
+
+<%= render "chalets/review" %>

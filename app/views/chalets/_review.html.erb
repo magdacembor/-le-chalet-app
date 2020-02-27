@@ -1,0 +1,32 @@
+<div class="container review">
+  <div class="row d-flex justify-content-between">
+    <div class="col-5">
+      <!-- Where reviews will be posted -->
+      <h3>Reviews</h3>
+      <% if @chalet.reviews.any? %>
+        <% @chalet.reviews.each do |review| %>
+          <h4><%= "⭐" * review.rating %></h4 >
+          <p><%= review.content %></p>
+          <div class="user-review-delete">
+            <p class="user-review">Posted by <%= review.user.first_name %></p>
+            <%= link_to review_path(review), method: :delete, data: { confirm: "Are you sure?"} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <% else %>
+        <p>Looks like no reviews have been made yet. Want to add a review?</p>
+      <% end %>
+    </div>
+    <div class="col-5">
+
+      <!-- Where reviews form goes -->
+      
+      <%= simple_form_for [@chalet, @review] do |f| %>
+        <%= f.input :rating %>
+        <%= f.input :content %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
