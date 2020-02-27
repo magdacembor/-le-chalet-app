@@ -23,5 +23,20 @@ require("channels")
 // ----------------------------------------------------
 import "bootstrap";
 import { initAutocomplete } from '../plugins/init_autocomplete.js';
+import slick from 'slick-carousel'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 
 initAutocomplete();
+
+$(document).ready(function(){
+  $('.your-class').slick({
+    centerMode: true,
+      centerPadding: '300px',
+      slidesToShow: 1,
+      arrows: false,
+      autoplay: true,
+      dots: true,
+      speed: 300
+  });
+});

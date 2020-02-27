@@ -1,10 +1,14 @@
 <div class="container">
-  <% if @address.nil? %>
+
+  <% if !@address || @address.empty? %>
     <h1>All chalets</h1>
   <% elsif @address.split(',').length == 1 %>
-    <h1>Chalets in <%= @address %></h1>
+    <h1>Chalets in <%= @address.strip %></h1>
   <% else %>
-    <h1>Chalets in <%= @address.split(',').first %>, <%= @address.split(',').last %></h1>
+    <h1>Chalets in <%= @address.split(',').first.strip %>, <%= @address.split(',').last.strip %></h1>
+  <% end %>
+  <% if @chalets.empty? %>
+    <p>We have found no chalets that match your search criteria</p>
   <% end %>
   <div class="chalet-cards">
     <% @chalets.each do |chalet| %>
