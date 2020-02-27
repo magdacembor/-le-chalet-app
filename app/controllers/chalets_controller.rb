@@ -8,7 +8,7 @@ class ChaletsController < ApplicationController
     @chalets = Chalet.geocoded
     if defined?(params[:index][:address]) && !params[:index][:address].empty?
       @address = params[:index][:address]
-      @chalets = Chalet.where("address @@ :query OR country @@ :query", query: "%#{@address}%")
+      @chalets = Chalet.near(@address, 15)
       if defined?(params[:index][:number_of_guests]) && params[:index][:number_of_guests].to_i > 0
         @chalets = @chalets.where("number_of_guests >= :query", query: params[:index][:number_of_guests].to_i)
       end
@@ -26,13 +26,9 @@ class ChaletsController < ApplicationController
     @booking.user_id = current_user
     @review = Review.new
     @review.user_id = current_user
-    @chalets = Chalet.geocoded
-    @markers = @chalets.map do |chalet|
-      {
-        lat: chalet.latitude,
-        lng: chalet.longitude
-      }
-    end
+    @markers = [
+      { lng: @chalet.longitude, lat: @chalet.latitude }
+    ]
   end
 
   def new
