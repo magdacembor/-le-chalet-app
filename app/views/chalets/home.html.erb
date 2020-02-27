@@ -1,18 +1,3 @@
-<!-- Force reload the page, so that initAutocomplete works every time -->
-
-<script>
-  function afterDOMLoaded() {
-    window.initAutocomplete();
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', afterDOMLoaded);
-  } else {
-    window.initAutocomplete();
-  }
-</script>
-
-<!-- Page content -->
-
 <div id="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(<%= cl_image_path('banner_y0cptu')%>);">
   <%= render 'shared/search-form' %>
 </div>

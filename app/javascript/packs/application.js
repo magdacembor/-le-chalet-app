@@ -27,9 +27,8 @@ import slick from 'slick-carousel'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-window.initAutocomplete = initAutocomplete
-
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", () => {
+  initAutocomplete();
   $('.your-class').slick({
     centerMode: true,
       centerPadding: '300px',
