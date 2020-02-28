@@ -1,16 +1,19 @@
 <!-- <div id="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(<%= cl_image_path('banner_y0cptu')%>);"> -->
 
   <div class="chalet-container">
-    <% if !@address || @address.empty? %>
-      <h1>All chalets</h1>
-    <% elsif @address.split(',').length == 1 %>
-      <h1>Chalets in <%= @address.strip %></h1>
-    <% else %>
-      <h1>Chalets in <%= @address.split(',').first.strip %>, <%= @address.split(',').last.strip %></h1>
-    <% end %>
-    <% if @chalets.empty? %>
-      <p>We have found no chalets that match your search criteria</p>
-    <% end %>
+
+    <div class="index-title">
+      <% if !@address || @address.empty? %>
+        <h1>All chalets</h1>
+      <% elsif @address.split(',').length == 1 %>
+        <h1>Chalets in <%= @address.strip %></h1>
+      <% else %>
+        <h1>Chalets in <%= @address.split(',').first.strip %>, <%= @address.split(',').last.strip %></h1>
+      <% end %>
+      <% if @chalets.empty? %>
+        <p>We have found no chalets that match your search criteria</p>
+      <% end %>
+    </div>
 
     <div class="my-container">
       <div class="chalet-cards">
@@ -18,7 +21,7 @@
           <% next unless chalet.photos.any? %>
           <%= link_to chalet_path(chalet) do %>
             <div class="chalet-card">
-              <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('<%= cl_image_path chalet.photos.first&.key || 'kmqfrjpvvv23epnxvfyhzogl9d71', crop: :fill %>')"> <!-- scale, fit, fill, limit, pad, crop -->
+              <div class="chalet-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url('<%= cl_image_path chalet.photos.first&.key || 'kmqfrjpvvv23epnxvfyhzogl9d71', crop: :fill %>')"> <!-- scale, fit, fill, limit, pad, crop -->
                 <div class="beds-and-guests">
                   <span><%= chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></span>
                   <span><%= chalet.number_of_guests %> <i class="fas fa-user-friends"></i></span>
@@ -26,8 +29,8 @@
               </div>
               <div class="chalet-card-description">
                 <div class="chalet-name">
-                  <p><%= chalet.name %></p>
-                  <p><%= chalet.address %></p>
+                  <h5><%= chalet.name %></h5>
+                  <p><%= chalet.address.split(',').first.strip %>, <%= chalet.address.split(',').last.strip %></p>
                 </div>
                 <div class="chalet-price">
                   <p>£<%= chalet.price %></p>
