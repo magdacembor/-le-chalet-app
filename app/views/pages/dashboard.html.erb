@@ -35,7 +35,7 @@
                 <div class="chalet-card-description">
                   <div class="chalet-name">
                     <p><%= booking.chalet.name %></p>
-                    <p><%= booking.chalet.address %></p>
+                    <p><%= booking.chalet.address.split(',').first.strip %>, <%= booking.chalet.address.split(',').last.strip %></p>
                   </div>
                   <div class="chalet-price">
                     <p>£<%= booking.chalet.price %></p>
@@ -44,21 +44,27 @@
               </div>
             </div>
             <div class="col-8">
-                <div class="booking-info">
-                  <h3>Your booking at <%= booking.chalet.name %></h3>
-                  <p class="booking-card-header">Dates</p>
-                  <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
-                  <p class="booking-card-header">Status</p>
-                  <p><%= booking.status %></p>
+              <div class="booking-info">
+                <h3>Your booking at <%= booking.chalet.name %></h3>
+                <hr>
+                <div class="booking-details">
+                  <div class="date-and-status">
+                    <div class="booking-date">
+                      <p class="booking-card-header">Dates</p>
+                      <p>From <%= booking.check_in_date %> to <%= booking.check_out_date %></p>
+                    </div>
+                    <div class="booking-status">
+                      <p class="booking-card-header">Status</p>
+                      <p><%= booking.status %></p>
+                    </div>
+                  </div>
                   <p class="booking-card-header">Message to owner</p>
                   <p> <%= booking.message %> </p>
-                  <br>
-                  <div class="d-flex justify-content-between">
-                    <%= link_to booking_path(booking), remote: true, method: "delete" do %>
-                      <button type="button" class="btn btn-secondary">Cancel request</button>
-                    <% end %>
-                  </div>
                 </div>
+                <%= link_to booking_path(booking), remote: true, method: "delete" do %>
+                  <button type="button" class="btn btn-secondary booking-left-button">Cancel request</button>
+                <% end %>
+              </div>
             </div>
           </div>
       <% end %>
@@ -114,21 +120,29 @@
                 <% chalet.bookings.each do |booking| %>
                   <div class="booking-info" id='property-booking'>
                     <h3>Booking request made for <%= chalet.name %></h3>
-                    <p class="booking-card-header">Dates</p>
-                    <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
-                    <p class="booking-card-header">Status</p>
-                    <p><%= booking.status %></p>
-                    <p class="booking-card-header">Message to owner</p>
-                    <p><%= booking.message %> </p>
-                    <br>
+                    <hr>
+                    <div class="booking-details">
+                      <div class="date-and-status">
+                        <div class="booking-date">
+                          <p class="booking-card-header">Dates</p>
+                          <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
+                        </div>
+                        <div class="booking-status">
+                          <p class="booking-card-header">Status</p>
+                          <p><%= booking.status %></p>
+                        </div>
+                      </div>
+                      <p class="booking-card-header">Message to owner</p>
+                      <p><%= booking.message %> </p>
+                    </div>
                     <% if booking.status == 'Pending' %>
                       <div class="d-flex justify-content-between">
                         <%= link_to decline_path(booking), remote: true, method: "patch" do %>
-                          <button type="button" class="btn btn-secondary">Reject</button>
+                          <button type="button" class="btn btn-secondary booking-left-button">Reject</button>
                         <% end %>
 
                         <%= link_to approve_path(booking), remote: true, method: "patch" do %>
-                          <button type="button" class="btn btn-success">Accept</button>
+                          <button type="button" class="btn btn-success booking-right-button">Accept</button>
                         <% end %>
                       </div>
                     <% end %>
