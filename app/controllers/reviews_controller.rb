@@ -11,17 +11,18 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.chalet = @chalet
     @review.user = current_user
-    if @review.save
-      redirect_to chalet_path(@chalet)
+    if @review.valid?
+      @review.save
+      redirect_to chalet_path(@chalet, anchor: "review")
     else
-      redirect_to chalet_path(@chalet)
+      render 'chalets/show', chalet: @chalet
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to chalet_path(@review.chalet)
+    redirect_to chalet_path(@review.chalet, anchor: "review")
   end
 
 

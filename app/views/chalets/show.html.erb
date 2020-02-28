@@ -23,9 +23,9 @@
       </div>
     </div>
 
-    <div class="col-5 forms show-form">
+    <div class="col-5 forms show-form" id='booking-form'>
       <h3>Make a Booking</h3>
-      <%= simple_form_for [@chalet, @booking], html: { class: 'w-100' } do |f| %>
+      <%= simple_form_for [@chalet, Booking.new], html: { class: 'w-100' }, remote: true do |f| %>
         <%= f.input :check_in_date, html5: true %>
         <%= f.input :check_out_date, html5: true %>
         <%= f.input :number_of_guests, collection: 1..20 %>
