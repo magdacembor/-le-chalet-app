@@ -12,8 +12,12 @@ class ReviewsController < ApplicationController
     @review.chalet = @chalet
     @review.user = current_user
     if @review.valid?
+      if @review.user == @chalet.user
+        redirect_to chalet_path(@chalet, anchor: "review")
+      else
       @review.save
       redirect_to chalet_path(@chalet, anchor: "review")
+      end
     else
       render 'chalets/show', chalet: @chalet
     end
