@@ -10,6 +10,7 @@ class Chalet < ApplicationRecord
   validates :number_of_guests, presence: true, numericality: { only_integer: true }
   validates :number_of_guests, numericality: { greater_than: 0 }
   validates :number_of_bedrooms, presence: true, numericality: { only_integer: true }
+  validates :number_of_bedrooms, numericality: { greater_than: 0 }
   validates :price, presence: true, numericality: true
   validates :user_id, presence: true
   has_many_attached :photos

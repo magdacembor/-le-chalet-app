@@ -3,9 +3,9 @@
   <%= f.input :description %>
   <%= f.input :address %>
   <%= f.input :number_of_guests, collection: 1..20 %>
-  <%= f.input :number_of_bedrooms %>
+  <%= f.input :number_of_bedrooms, collection: 1..20 %>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Add photos" %>
   <br>
-  <%= f.submit label: "Add Your Chalet", class:"btn btn-primary btn-block" %>
+  <%= f.submit value: "Add Your Chalet", class:"btn btn-dark btn-block" %>
 <% end %>

@@ -1,21 +1,24 @@
-<div class="container chalet-title">
-  <h1><%= @chalet.name%></h1>
-</div>
+<!-- <div class="container chalet-title">
+  <h1><%= @chalet%></h1>
+</div> -->
 
 <%= render "chalets/carousel" %>
 
 <div class="container chalet-description">
   <div class="d-flex align-items-start justify-content-between">
     <div class="col-6">
-      <h2><%= @chalet.address %></h2>
+      <h1><%= @chalet.name%></h1>
+      <h5><%= @chalet.address %></h5>
+      <hr>
       <p><%= @chalet.description%></p>
     </div>
-    <div class="col-5">
+    <div class="col-5 forms show-form">
+      <h3>Make a Booking</h3>
       <%= simple_form_for [@chalet, @booking], html: { class: 'w-100' } do |f| %>
         <%= f.input :check_in_date, html5: true %>
         <%= f.input :check_out_date, html5: true %>
-        <%= f.input :number_of_guests %>
-        <%= f.submit %>
+        <%= f.input :number_of_guests, collection: 1..20 %>
+        <%= f.submit value: "Book", class:"btn btn-dark btn-block" %>
       <% end %>
     </div>
   </div>
