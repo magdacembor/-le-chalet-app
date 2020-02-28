@@ -6,14 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'open-uri'
+# require 'open-uri'
 
 puts "Creating users..."
 
 
 @users = [
 
-{ email: "john@gmail.com", first_name: "John", last_name: "Smith", password: "User1234"}
+{ email: "john@gmail.com", first_name: "John", last_name: "Smith", password: "User1234" },
+{ email: "sarah@gmail.com", first_name: "Sarah", last_name: "Williams", password: "User1234" },
+{ email: "alex@gmail.com", first_name: "Alex", last_name: "Baker", password: "User1234" },
+{ email: "phoebe@gmail.com", first_name: "Phoebe", last_name: "Yu", password: "User1234" }
 
 ]
 
@@ -27,9 +30,16 @@ puts "Creating chalets..."
 
 @chalets = [
 
-{ name: "Chalet d'Or", description: "A cosy chalet in a magnificent location", address: "Verbier, Switzerland", number_of_guests: 5, number_of_bedrooms: 2, price: 250, user_id: 1 }
+{ name: "Chalet d'Or", description: "A cosy chalet in a magnificent location", address: "Verbier, Switzerland", number_of_guests: 5, number_of_bedrooms: 2, price: 250, user_id: 1 },
+{ name: "Chalet de Grands Montets", description: "description 2", address: "Chamonix, France", number_of_guests: 10, number_of_bedrooms: 4, price: 250, user_id: 2 },
+{ name: "Villa Leysin", description: "description 3", address: "Leysin, Switzerland", number_of_guests: 8, number_of_bedrooms: 3, price: 250, user_id: 1 },
+{ name: "Vue Montana", description: "description 4", address: "Crans-Montana, Switzerland", number_of_guests: 9, number_of_bedrooms: 4, price: 250, user_id: 2 },
+{ name: "Chalet Belle Vue", description: "description 5", address: "Courmayeur, Italy", number_of_guests: 4, number_of_bedrooms: 2, price: 250, user_id: 4 },
+{ name: "Villa de Neige", description: "description 6", address: "Vallorcine, France", number_of_guests: 5, number_of_bedrooms: 2, price: 250, user_id: 4 }
+
 ]
-path =Rails.root.join('chalets_pictures').to_s
+
+path = Rails.root.join('chalets_pictures').to_s
 index = 0
 Dir.foreach(path) do |dir|
   if dir.include?('chalet') && @chalets[index].present?
