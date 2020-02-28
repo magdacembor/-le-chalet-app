@@ -7,13 +7,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    chalet = Chalet.find(params[:chalet_id])
+    @chalet = Chalet.find(params[:chalet_id])
     @booking.user = current_user
-    @booking.chalet_id = chalet.id
-    if @booking.save
+    @booking.chalet_id = @chalet.id
+    if @booking.valid?
+      @booking.save
       redirect_to dashboard_path
     else
-      redirect_to chalet_path(chalet)
+      render 'chalets/show', chalet: @chalet
     end
   end
 
