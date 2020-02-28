@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h3>Your bookings</h3>
+      <h3 id='your-bookings'>Your bookings</h3>
     </div>
   </div>
   <br>
@@ -54,7 +54,7 @@
                   <p> <%= booking.message %> </p>
                   <br>
                   <div class="d-flex justify-content-between">
-                    <%= link_to booking_path(booking), method: "delete" do %>
+                    <%= link_to booking_path(booking), remote: true, method: "delete" do %>
                       <button type="button" class="btn btn-secondary">Cancel request</button>
                     <% end %>
                   </div>
@@ -112,7 +112,7 @@
                 </div>
               <% else %>
                 <% chalet.bookings.each do |booking| %>
-                  <div class="booking-info">
+                  <div class="booking-info" id='property-booking'>
                     <h3>Booking request made for <%= chalet.name %></h3>
                     <p class="booking-card-header">Dates</p>
                     <p><%= booking.check_in_date %> - <%= booking.check_out_date %> </p>
@@ -123,11 +123,11 @@
                     <br>
                     <% if booking.status == 'Pending' %>
                       <div class="d-flex justify-content-between">
-                        <%= link_to decline_path(booking), method: "patch" do %>
+                        <%= link_to decline_path(booking), remote: true, method: "patch" do %>
                           <button type="button" class="btn btn-secondary">Reject</button>
                         <% end %>
 
-                        <%= link_to approve_path(booking), method: "patch" do %>
+                        <%= link_to approve_path(booking), remote: true, method: "patch" do %>
                           <button type="button" class="btn btn-success">Accept</button>
                         <% end %>
                       </div>
