@@ -22,7 +22,23 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
 
-    redirect_to chalets_path
+    redirect_to dashboard_path
+  end
+
+  def approve
+    @booking = Booking.find(params[:id])
+    @booking.status = "Approved"
+    @booking.save
+
+    redirect_to dashboard_path
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    @booking.status = "Declined"
+    @booking.save
+
+    redirect_to dashboard_path
   end
 
   private

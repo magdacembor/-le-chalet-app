@@ -54,8 +54,9 @@
                   <p> <%= booking.message %> </p>
                   <br>
                   <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary">Cancel request</button>
-                    <button type="button" class="btn btn-info">Message owner</button>
+                    <%= link_to booking_path(booking), method: "delete" do %>
+                      <button type="button" class="btn btn-secondary">Cancel request</button>
+                    <% end %>
                   </div>
                 </div>
             </div>
@@ -120,10 +121,17 @@
                     <p class="booking-card-header">Message to owner</p>
                     <p><%= booking.message %> </p>
                     <br>
-                    <div class="d-flex justify-content-between">
-                      <button type="button" class="btn btn-secondary">Reject</button>
-                      <button type="button" class="btn btn-success">Accept</button>
-                    </div>
+                    <% if booking.status == 'Pending' %>
+                      <div class="d-flex justify-content-between">
+                        <%= link_to decline_path(booking), method: "patch" do %>
+                          <button type="button" class="btn btn-secondary">Reject</button>
+                        <% end %>
+
+                        <%= link_to approve_path(booking), method: "patch" do %>
+                          <button type="button" class="btn btn-success">Accept</button>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
                 <% end %>
               <% end %>
