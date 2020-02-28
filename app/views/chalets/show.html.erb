@@ -21,6 +21,8 @@
           <p><%= @chalet.number_of_guests %> <i class="fas fa-user-friends"></i></p>
         </div>
       </div>
+      <hr>
+        <p>Added by <strong><%= @chalet.user.first_name %></strong></p>
     </div>
 
     <div class="col-5 forms show-form" id='booking-form'>
