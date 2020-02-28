@@ -1,12 +1,5 @@
-<div class='carousel'>
-  <div class="carousel-styling">
-    <% @chalet.photos.each do |photo| %>
-      <div><%= cl_image_tag photo.key, crop: :fill, class: "testt" %></div>
-    <% end %>
-  </div>
-  <div class="carousel-tag">
-    <p>£<%= @chalet.price %> per night</p>
-    <p><%= @chalet.number_of_bedrooms %> <i class="fas fa-bed"></i></p>
-    <p><%= @chalet.number_of_guests %> <i class="fas fa-user-friends"></i></p>
-  </div>
+<div class="carousel-styling">
+  <% @chalet.photos.each do |photo| %>
+    <div><%= cl_image_tag photo.key, crop: :fill, class: "testt" %></div>
+  <% end %>
 </div>

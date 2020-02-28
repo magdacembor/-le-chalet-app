@@ -36,7 +36,7 @@ const carousel = () => {
       arrows: false,
       autoplay: true,
       dots: true,
-      speed: 300
+      speed: 500
   });
 }
 

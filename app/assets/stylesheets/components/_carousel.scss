@@ -6,18 +6,3 @@
   box-shadow: 1px 1px 5px rgb(60,60,60);
   border: .5px solid rgb(200,200,200);
 }
-
-.carousel {
-  position: relative;
-  .carousel-tag {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 22px;
-    color: white;
-    font-weight: bolder;
-    padding: 10px;
-    background: rgba(60,60,60,0.2);
-    text-align: right;
-  }
-}
