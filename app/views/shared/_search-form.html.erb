@@ -1,13 +1,11 @@
-<div class="row">
-  <div class="col-6 offset-3">
-    <div class="search-form">
-      <h2>Find your dream chalet...</h2>
-      <br>
+<!-- <div class="row"> -->
+  <!-- <div class="col-6 offset-3"> -->
+    <div class="">
       <%= simple_form_for :index, url: chalets_path, method: :get do |f| %>
         <%= f.input :address, label: false, placeholder: "Where would you like to go?" %>
         <%= f.input :number_of_guests, collection: 1..12, label: false, prompt: "Number of guests" %>
         <%= f.submit 'Search', class: "btn btn-dark btn-block"%>
       <% end %>
     </div>
-  </div>
-</div>
+<!--   </div>
+</div> -->

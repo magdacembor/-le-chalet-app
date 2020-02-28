@@ -10,6 +10,21 @@
 .my-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 2%;
+  padding: 4px 2%;
+}
+
+.map-index{
+  padding-left: 5%;
+  margin-left: 20px;
+  height: calc(100vh - 55px);
+  width: 100%;
+  position: sticky;
+  top: 0px;
+}
+
+
+.index-title{
+  padding: 30px 0px;
+  color: #282828;
 }
 
